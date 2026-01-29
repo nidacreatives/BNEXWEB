@@ -71,7 +71,17 @@ export default function Home() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const move = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
+    const move = (e: MouseEvent) => {
+      setMouse({ x: e.clientX, y: e.clientY });
+      document.documentElement.style.setProperty(
+        "--mouse-x",
+        `${e.clientX - 200}px`,
+      );
+      document.documentElement.style.setProperty(
+        "--mouse-y",
+        `${e.clientY - 200}px`,
+      );
+    };
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
   }, []);
@@ -82,10 +92,7 @@ export default function Home() {
       <LaptopModel />
 
       {/* Mouse Glow */}
-      <div
-        className="fixed w-[400px] h-[400px] rounded-full bg-gradient-to-r from-cyan-500/10 to-purple-500/10 blur-3xl pointer-events-none"
-        style={{ left: mouse.x - 200, top: mouse.y - 200 }}
-      />
+      <div className="mouse-glow fixed w-[400px] h-[400px] rounded-full bg-gradient-to-r from-cyan-500/10 to-purple-500/10 blur-3xl pointer-events-none" />
 
       <main className="relative z-10 max-w-6xl mx-auto px-6 py-16">
         {/* LOGO */}

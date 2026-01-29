@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --mouse-x: 0px;
+  --mouse-y: 0px;
 }
 
 @theme inline {
@@ -23,4 +25,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.mouse-glow {
+  left: var(--mouse-x) !important;
+  top: var(--mouse-y) !important;
 }
